@@ -15,7 +15,7 @@ setup(
                      'Django Web Framework',
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
-    packages=['offline_messages',]
+    packages=['offline_messages',],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
                  'Framework :: Django',
