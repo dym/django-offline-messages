@@ -17,13 +17,10 @@ class OfflineStorageEngine(SessionStorage):
             offline_messages = OfflineMessage.objects.filter(user=self.request.user)
             if offline_messages:
                 messages.extend(offline_messages)
-                print messages
-            # add deletion from database code
+            # TODO: add deletion from database code
         online_messages, all_retrieved  = super(OfflineStorageEngine, self)._get(*args, **kwargs)
         if online_messages:
             messages.extend(online_messages)
-            print messages
-        print messages
 
         return messages, True
 
