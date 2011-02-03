@@ -1,4 +1,4 @@
-# -*- coding: utf-8; mode: python -*-
+# -*- coding: utf-8; mode: python; -*-
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.utils.encoding import force_unicode
