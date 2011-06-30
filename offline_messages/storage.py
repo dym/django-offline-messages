@@ -17,7 +17,7 @@ class OfflineStorageEngine(SessionStorage):
             offline_messages = OfflineMessage.objects.filter(user=self.request.user)
             if offline_messages:
                 messages.extend(offline_messages)
-            offline_messages.delete()
+                offline_messages.delete()
 
         online_messages, all_retrieved  = super(OfflineStorageEngine, self)._get(*args, **kwargs)
         if online_messages:
