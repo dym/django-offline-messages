@@ -21,6 +21,20 @@ You can continue to use the standard Django message system as desired. Messages 
 
 Will work just fine. However, if you'd like to create an offline message, do something like this:
 
+ from offline_messages.utils import create_offline_message, constants
+ 
+ create_offline_message(User.objects.get(id=1), "Hello there!", level=constants.WARNING)
+
+Or like this:
+
  from offline_messages.models import OfflineMessage
  
- OfflineMessage.objects.create( user = User.objects.get(id=1), level = 20, message = 'Hello world.' )
+ OfflineMessage.objects.create(user=User.objects.get(id=1), level=20, message='Hello world.')
+
+Usage example from the real life::
+
+ # Iterate through users
+ for user in User.objects.all():
+     already_notified = OfflineMessage.objects.filter(user=user, message=message).exists()
+     if not already_notified:
+         create_offline_message(user, message, level=constants.WARNING)
