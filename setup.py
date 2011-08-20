@@ -5,7 +5,7 @@ Web Framework.
 (C) 2011 oDesk www.oDesk.com
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='django-offline-messages',
@@ -24,5 +24,6 @@ setup(
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',
                  'Topic :: Software Development :: Libraries :: Python Modules',
-                 ]
+                 ],
+    test_suite='tests.runtests.runtests'
     )
