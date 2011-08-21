@@ -11,10 +11,15 @@ setup(
     name='django-offline-messages',
     version='0.2.4',
     description='A package that implements offline messages for Django',
-    long_description='A package that implements offline messages for' + \
+    long_description='A package that implements offline messages for ' + \
                      'Django Web Framework',
+    license='BSD',
+    keywords='django offline messages',
+    url='https://github.com/dym/django-offline-messages',
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
+    maintainer='Dmitriy Budashny',
+    maintainer_email='dmitriy.budashny@gmail.com',
     packages=['offline_messages',],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
