@@ -20,7 +20,7 @@ setup(
     author_email='developers@odesk.com',
     maintainer='Dmitriy Budashny',
     maintainer_email='dmitriy.budashny@gmail.com',
-    packages=['offline_messages',],
+    packages=['offline_messages', 'offline_messages.migrations'],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
                  'Framework :: Django',
