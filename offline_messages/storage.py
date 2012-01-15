@@ -10,23 +10,35 @@ class OfflineStorageEngine(SessionStorage):
     """
     
     def _get(self, *args, **kwargs):
-        """ Get offline and online messages. """
+        """ 
+        Get unread offline and all online messages (which are inherently 'unread').
+        """
         messages = []
 
-        if hasattr(self.request, "user") and self.request.user.is_authenticated():
-            offline_messages = OfflineMessage.objects.filter(user=self.request.user)
+        if hasattr(self.request, 'user') and self.request.user.is_authenticated():
+            offline_messages = OfflineMessage.objects.filter(user=self.request.user, read=False)
+
             if offline_messages:
                 messages.extend(offline_messages)
-                offline_messages.delete()
+                offline_messages.update(read=True)
 
-        online_messages, all_retrieved  = super(OfflineStorageEngine, self)._get(*args, **kwargs)
+        online_messages, all_retrieved = super(OfflineStorageEngine, self)._get(*args, **kwargs)
         if online_messages:
             messages.extend(online_messages)
 
         return messages, True
 
     def _store(self, messages, *args, **kwargs):
-        """ Store messages, but not offline. """
-        messages = [msg for msg in messages
-                        if not isinstance(msg, OfflineMessage)]
+        """ 
+        Store messages. If logged in, store them offline, else, store in session. """
+        if hasattr(self.request, 'user') and self.request.user.is_authenticated():
+            # start simple stupid, just the basics...
+            OfflineMessage.objects.create(
+                user        =   self.request.user, 
+                level       =   20, 
+                message     =   'Hello world.'
+            )
+        else:
+            messages = [msg for msg in messages if not isinstance(msg, OfflineMessage)]
+        
         return super(OfflineStorageEngine, self)._store(messages, *args, **kwargs)

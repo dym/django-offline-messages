@@ -10,6 +10,24 @@ Make changes to your settings:
 
 
 =========================
+About
+=========================
+
+This is a slightly modified version of the excellent and simple `offline_messages` package. It
+includes generic foreign keys plus extra meta information. This is a specific implementation
+for Zapier as we have tons of feedback points, but its easy to confuse the bejesus out of our
+customers because important error messages disappear for good.
+
+So basically this adds:
+
+1. Persistent history of messages.
+2. Generic foreign keys to attach messages to specific objects (any model, any record).
+3. The ability to store even more meta data (EG: the parameters that caused the message).
+
+Enjoy!
+
+
+=========================
 Example Usage
 =========================
 
