@@ -8,6 +8,7 @@ from django.contrib.messages.utils import get_level_tags
 from offline_messages.models import OfflineMessage
 
 __doc__ = """
+
 The idea here is you can just do:
 
     from offline_messages import utils as messages
@@ -49,10 +50,9 @@ def create_offline_message(user,
 
     if content_object:
         kwargs['content_object'] = content_object
-    
-    print content_object
 
     return OfflineMessage.objects.create(**kwargs)
+
 
 
 def add_message(request, level, message, extra_tags='', fail_silently=False, **kwargs):
