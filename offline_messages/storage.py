@@ -33,12 +33,12 @@ class OfflineStorageEngine(SessionStorage):
         Store messages. If logged in, store them offline, else, store in session. """
         if hasattr(self.request, 'user') and self.request.user.is_authenticated():
             # start simple stupid, just the basics...
-            OfflineMessage.objects.create(
-                user        =   self.request.user, 
-                level       =   20, 
-                message     =   'Hello world.'
-            )
+            for msg in messages:
+                OfflineMessage.objects.create(
+                    user        =   self.request.user, 
+                    level       =   msg.level, 
+                    message     =   msg.message
+                )
         else:
             messages = [msg for msg in messages if not isinstance(msg, OfflineMessage)]
-        
-        return super(OfflineStorageEngine, self)._store(messages, *args, **kwargs)
+            return super(OfflineStorageEngine, self)._store(messages, *args, **kwargs)
