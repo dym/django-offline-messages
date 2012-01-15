@@ -29,7 +29,7 @@ also have access to be able to do things like...
 def create_offline_message(user, 
                            message,
                            level=constants.INFO,
-                           read=True,
+                           read=False,
                            content_object=None,
                            meta={}):
 
