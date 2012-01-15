@@ -63,15 +63,15 @@ Extra Functionality
 
 The idea behind utils is you can just do:
 
-    from offline_messages import utils as messages
+ from offline_messages import utils as messages
 
 In place of:
 
-    from django.contrib import messages
+ from django.contrib import messages
 
 And still have access to boring old `messages.success(request, 'Good job!')` but
 also have access to be able to do things like...
 
-    comment = Comment.objects.create(title='A test', message='Thanks!')
-    messages.success(request, 'Comment posted!', content_object=comment, meta={'blah': 'blah'})
+ comment = Comment.objects.create(title='A test', message='Thanks!')
+ messages.success(request, 'Comment posted!', content_object=comment, meta={'blah': 'blah'})
 
