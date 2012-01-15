@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='django-offline-messages',
-    version='0.3.0',
+    version='0.3.1',
     description='A package that implements offline messages for Django plus more',
     long_description='A package that implements offline messages for Django Web Framework',
     license='BSD',
