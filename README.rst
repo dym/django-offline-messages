@@ -56,3 +56,22 @@ Usage example from the real life::
      already_notified = OfflineMessage.objects.filter(user=user, message=message).exists()
      if not already_notified:
          create_offline_message(user, message, level=constants.WARNING)
+
+===========================
+Extra Functionality
+===========================
+
+The idea behind utils is you can just do:
+
+    from offline_messages import utils as messages
+
+In place of:
+
+    from django.contrib import messages
+
+And still have access to boring old `messages.success(request, 'Good job!')` but
+also have access to be able to do things like...
+
+    comment = Comment.objects.create(title='A test', message='Thanks!')
+    messages.success(request, 'Comment posted!', content_object=comment, meta={'blah': 'blah'})
+
