@@ -25,10 +25,13 @@ class OfflineMessageQuerySetManager(models.query.QuerySet):
         return self.filter(level=constants.SUCCESS)
 
     def warning(self):
-        return self.filter(level=constants.warning)
+        return self.filter(level=constants.WARNING)
 
     def error(self):
-        return self.filter(level=constants.error)
+        return self.filter(level=constants.ERROR)
+
+    def unread(self):
+        return self.filter(read=False)
 
 
 class OfflineMessageManager(models.Manager):
