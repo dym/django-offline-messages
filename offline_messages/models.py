@@ -11,6 +11,38 @@ from django.contrib.contenttypes import generic
 from jsonfield import JSONField
 
 
+class OfflineMessageQuerySetManager(models.query.QuerySet):
+    """ Provide easy to use filters for use in templates
+    """
+
+    def info(self):
+        return self.filter(level=constants.INFO)
+
+    def debug(self):
+        return self.filter(level=constants.DEBUG)
+
+    def success(self):
+        return self.filter(level=constants.SUCCESS)
+
+    def warning(self):
+        return self.filter(level=constants.WARNING)
+
+    def error(self):
+        return self.filter(level=constants.ERROR)
+
+    def unread(self):
+        return self.filter(read=False)
+
+
+class OfflineMessageManager(models.Manager):
+
+    def get_query_set(self):
+        return OfflineMessageQuerySetManager(self.model)
+
+    def __getattr__(self, name):
+        return getattr(self.get_query_set(), name)
+
+
 class OfflineMessage(models.Model):
     user = models.ForeignKey(User)
     level = models.IntegerField(default=constants.INFO)
@@ -25,6 +57,7 @@ class OfflineMessage(models.Model):
 
     meta = JSONField(default={}, blank=True, null=True)
 
+    objects = OfflineMessageManager()
 
     def __unicode__(self):
         return force_unicode(self.message)
