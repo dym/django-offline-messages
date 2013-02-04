@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='django-offline-messages',
-    version='0.3.1',
+    version='0.3.2',
     description='A package that implements offline messages for Django plus more',
     long_description='A package that implements offline messages for Django Web Framework',
     license='BSD',
@@ -21,6 +21,7 @@ setup(
     maintainer='Bryan Helmig',
     maintainer_email='bryan@zapier.com',
     packages=['offline_messages', 'offline_messages.migrations'],
+    install_requires = ['jsonfield', 'south'],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
                  'Framework :: Django',
