@@ -1,2 +1,3 @@
 include LICENSE
 include README.rst
+recursive-include offline_messages/templates *

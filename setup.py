@@ -6,21 +6,22 @@ Web Framework.
 (C) 2011 oDesk www.oDesk.com w/revisions by Zapier.com
 """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='django-offline-messages',
-    version='0.3.3',
+    version='0.3.5',
     description='A package that implements offline messages for Django plus more',
     long_description='A package that implements offline messages for Django Web Framework',
     license='BSD',
     keywords='django offline messages',
-    url='https://github.com/zapier/django-offline-messages',
-    author='oDesk, www.odesk.com',
-    author_email='developers@odesk.com',
-    maintainer='Bryan Helmig',
-    maintainer_email='bryan@zapier.com',
-    packages=['offline_messages', 'offline_messages.migrations'],
+    url='https://github.com/themotleyfool/django-offline-messages',
+    author='Brian Faherty',
+    author_email='bfaherty@fool.com',
+    maintainer='Brian Faherty',
+    maintainer_email='bfaherty@fool.com',
+    packages=['offline_messages', 'offline_messages.management', 'offline_messages.management.commands', 'offline_messages.migrations'],
+    include_package_data=True,
     install_requires = ['jsonfield', 'south'],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
