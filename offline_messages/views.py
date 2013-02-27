@@ -10,7 +10,7 @@ class OfflineGroupMessageView(FormView):
     template_name = "send_group_message.html"
 
     def form_valid(self, form):
-        message_kwargs = {}
+        message_kwargs = {'level' : form.cleaned_data['level']}
         if form.cleaned_data['expiration']:
             message_kwargs['content_object'] = OfflineExpiration.objects.create(datetime=form.cleaned_data['expiration'])
         if form.cleaned_data['groups']:
