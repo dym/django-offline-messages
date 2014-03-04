@@ -14,3 +14,5 @@ INSTALLED_APPS = (
 ROOT_URLCONF = ''
 
 COVERAGE_ADDITIONAL_MODULES = ('offline_messages',)
+
+SECRET_KEY = 'foobar'
