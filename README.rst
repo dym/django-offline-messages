@@ -1,3 +1,7 @@
+.. image::
+   https://travis-ci.org/dym/django-offline-messages.png
+   :target: https://travis-ci.org/dym/django-offline-messages
+
 =========================
 Installation Instructions
 =========================
