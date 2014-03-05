@@ -1,3 +1,7 @@
+.. image::
+   https://travis-ci.org/TyMaszWeb/django-offline-messages.png
+   :target: https://travis-ci.org/TyMaszWeb/django-offline-messages
+
 =========================
 Installation Instructions
 =========================
