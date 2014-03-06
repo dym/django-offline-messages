@@ -3,23 +3,23 @@
 A package that implements offline messages for Django
 Web Framework.
 
-(C) 2011 oDesk www.oDesk.com w/revisions by Zapier.com
+(C) 2011-2014 oDesk www.oDesk.com w/revisions by Zapier.com
 """
 
 from setuptools import setup
 
 setup(
     name='django-offline-messages',
-    version='0.3.1',
+    version='0.3.2',
     description='A package that implements offline messages for Django plus more',
     long_description='A package that implements offline messages for Django Web Framework',
     license='BSD',
     keywords='django offline messages',
-    url='https://github.com/zapier/django-offline-messages',
+    url='https://github.com/dym/django-offline-messages',
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
-    maintainer='Bryan Helmig',
-    maintainer_email='bryan@zapier.com',
+    maintainer='Dmitriy Budashny',
+    maintainer_email='dmitriy.budashny@gmail.com',
     packages=['offline_messages', 'offline_messages.migrations'],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
