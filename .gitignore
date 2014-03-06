@@ -1,4 +1,7 @@
+.idea
+
 *.pyc
 *~
+*.egg
 django_offline_messages.egg-info/*
 dist/*
