@@ -18,7 +18,7 @@ class Migration(SchemaMigration):
         db.add_column('offline_messages_offlinemessage', 'object_id', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True), keep_default=False)
 
         # Adding field 'OfflineMessage.meta'
-        db.add_column('offline_messages_offlinemessage', 'meta', self.gf('jsonfield.fields.JSONField')(default="", null=True, blank=True), keep_default=False)
+        db.add_column('offline_messages_offlinemessage', 'meta', self.gf('jsonfield.fields.JSONField')(null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
