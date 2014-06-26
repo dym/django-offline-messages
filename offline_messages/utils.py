@@ -2,7 +2,10 @@
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib.messages.api import MessageFailure
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_unicode
+except ImportError:
+    from django.utils.encoding import force_text as force_unicode
 from django.contrib.messages.utils import get_level_tags
 
 from offline_messages.models import OfflineMessage
