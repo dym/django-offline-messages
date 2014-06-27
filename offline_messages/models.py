@@ -1,7 +1,10 @@
 # -*- coding: utf-8; mode: python; -*-
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_unicode
+except ImportError:
+    from django.utils.encoding import force_text as force_unicode
 from django.contrib.messages import constants
 from django.contrib.messages.utils import get_level_tags
 
