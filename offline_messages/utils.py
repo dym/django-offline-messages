@@ -1,5 +1,7 @@
 # -*- coding: utf-8; mode: python; -*-
-from django.contrib.auth.models import User
+
+from django.contrib.auth import get_user_model
+
 from django.contrib.messages import constants
 from django.contrib.messages.api import MessageFailure
 try:
@@ -29,15 +31,15 @@ also have access to be able to do things like...
 """.strip()
 
 
-def create_offline_message(user, 
+def create_offline_message(user,
                            message,
                            level=constants.INFO,
                            read=False,
                            content_object=None,
                            meta={}):
 
-    if not isinstance(user, User):
-        user = User.objects.get(username=user)
+    if not isinstance(user, get_user_model()):
+        user = get_user_model().objects.get(username=user)
 
     level_tags = get_level_tags()
     label_tag = force_unicode(level_tags.get(level, ''), strings_only=True)

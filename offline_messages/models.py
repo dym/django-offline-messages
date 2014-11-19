@@ -1,6 +1,7 @@
 # -*- coding: utf-8; mode: python; -*-
+
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 try:
     from django.utils.encoding import force_unicode
 except ImportError:
@@ -12,6 +13,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from jsonfield import JSONField
+
+AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class OfflineMessageQuerySetManager(models.query.QuerySet):
@@ -47,7 +50,7 @@ class OfflineMessageManager(models.Manager):
 
 
 class OfflineMessage(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(AUTH_USER_MODEL)
     level = models.IntegerField(default=constants.INFO)
     message = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
