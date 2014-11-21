@@ -1,6 +1,12 @@
 # -*- coding: utf-8; mode: python; -*-
 
-from django.contrib.auth import get_user_model
+try:
+    from django.contrib.auth import get_user_model
+except ImportError:
+    from django.contrib.auth.models import User
+
+    def get_user_model():
+        return User
 
 from django.contrib.messages import constants
 from django.contrib.messages.api import MessageFailure
@@ -59,7 +65,6 @@ def create_offline_message(user,
     return OfflineMessage.objects.create(**kwargs)
 
 
-
 def add_message(request, level, message, extra_tags='', fail_silently=False, **kwargs):
     """
     Attempts to add a message to the request using the 'messages' app, falling
@@ -71,9 +76,10 @@ def add_message(request, level, message, extra_tags='', fail_silently=False, **k
     if hasattr(request, '_messages'):
         return request._messages.add(level, message, extra_tags)
     if not fail_silently:
-        raise MessageFailure(   'Without the django.contrib.messages '
-                                'middleware, messages can only be added to '
-                                'authenticated users.')
+        raise MessageFailure('Without the django.contrib.messages '
+                             'middleware, messages can only be added to '
+                             'authenticated users.')
+
 
 def debug(request, message, **kwargs):
     add_message(request, constants.DEBUG, message, **kwargs)
