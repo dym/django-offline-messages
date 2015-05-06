@@ -20,7 +20,7 @@ setup(
     author_email='bfaherty@fool.com',
     maintainer='Brian Faherty',
     maintainer_email='bfaherty@fool.com',
-    packages=['offline_messages', 'offline_messages.management', 'offline_messages.management.commands', 'offline_messages.migrations'],
+    packages=find_packages(),
     include_package_data=True,
     install_requires = ['jsonfield', 'south'],
     classifiers=['Development Status :: 3 - Alpha',
