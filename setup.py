@@ -16,6 +16,7 @@ setup(
     license='BSD',
     keywords='django offline messages',
     url='https://github.com/themotleyfool/django-offline-messages',
+    dependency_links= ['http://localshop.foolhq.com/packages/',],
     author='Brian Faherty',
     author_email='bfaherty@fool.com',
     maintainer='Brian Faherty',
