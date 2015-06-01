@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='fool-django-offline-messages',
-    version='0.3.8',
+    version='0.3.9.dev0',
     description='A package that implements offline messages for Django plus more',
     long_description='A package that implements offline messages for Django Web Framework',
     license='BSD',
