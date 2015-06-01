@@ -22,7 +22,7 @@ setup(
     maintainer_email='bfaherty@fool.com',
     packages=find_packages(),
     include_package_data=True,
-    install_requires = ['jsonfield', 'south'],
+    install_requires = ['jsonfield', ],
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
                  'Framework :: Django',
