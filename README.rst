@@ -2,6 +2,10 @@
    https://travis-ci.org/dym/django-offline-messages.png
    :target: https://travis-ci.org/dym/django-offline-messages
 
+.. image::
+   https://coveralls.io/repos/dym/django-offline-messages/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/dym/django-offline-messages?branch=master
+
 =========================
 Installation Instructions
 =========================
