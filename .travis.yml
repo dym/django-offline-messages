@@ -12,8 +12,13 @@ env:
 
 install:
   - pip install $DJANGO django-jsonfield
+  - pip install coveralls
 
-script: 'tests/runtests.py'
+script:
+  coverage run --source=offline_messages tests/runtests.py
+
+after_success:
+  coveralls
 
 matrix:
   exclude:
@@ -21,3 +26,5 @@ matrix:
       env: DJANGO="Django>=1.4,<1.5"
     - python: "3.4"
       env: DJANGO="Django>=1.4,<1.5"
+
+sudo: false
