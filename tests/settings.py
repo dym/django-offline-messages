@@ -11,6 +11,11 @@ INSTALLED_APPS = (
     'tests'
 )
 
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+)
+
 ROOT_URLCONF = ''
 
 COVERAGE_ADDITIONAL_MODULES = ('offline_messages',)

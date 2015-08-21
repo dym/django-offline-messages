@@ -3,7 +3,11 @@ from django.contrib.messages import constants
 try:
     from django.contrib.messages.tests import test_session as session_tests
 except ImportError:
-    from django.contrib.messages.tests import session as session_tests
+    try:
+        from django.contrib.messages.tests import session as session_tests
+    except ImportError:
+        from messages_tests import test_session as session_tests
+
 
 from offline_messages.models import OfflineMessage
 from offline_messages.storage import OfflineStorageEngine
