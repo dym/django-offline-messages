@@ -10,7 +10,10 @@ from django.contrib.messages import constants
 from django.contrib.messages.utils import get_level_tags
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+try:
+    from django.contrib.contenttypes.fields import GenericForeignKey
+except ImportError:
+    from django.contrib.contenttypes.generic import GenericForeignKey
 
 from jsonfield import JSONField
 
@@ -59,7 +62,7 @@ class OfflineMessage(models.Model):
 
     content_type = models.ForeignKey(ContentType, blank=True, null=True)
     object_id = models.PositiveIntegerField(blank=True, null=True)
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
 
     meta = JSONField(default={}, blank=True, null=True)
 
