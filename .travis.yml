@@ -1,0 +1,32 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+
+env:
+  - DJANGO="Django>=1.8,<1.9"
+  - DJANGO="Django>=1.7,<1.8"
+  - DJANGO="Django>=1.6,<1.7"
+  - DJANGO="Django>=1.5,<1.6"
+  - DJANGO="Django>=1.4,<1.5"
+
+install:
+  - pip install $DJANGO django-jsonfield
+  - pip install coveralls
+
+script:
+  coverage run --source=offline_messages tests/runtests.py
+
+after_success:
+  coveralls
+
+matrix:
+  exclude:
+    - python: "3.3"
+      env: DJANGO="Django>=1.4,<1.5"
+    - python: "3.4"
+      env: DJANGO="Django>=1.4,<1.5"
+
+sudo: false

@@ -1,14 +1,23 @@
 # -*- coding: utf-8; mode: python; -*-
+
 from django.db import models
-from django.contrib.auth.models import User
-from django.utils.encoding import force_unicode
+from django.conf import settings
+try:
+    from django.utils.encoding import force_unicode
+except ImportError:
+    from django.utils.encoding import force_text as force_unicode
 from django.contrib.messages import constants
 from django.contrib.messages.utils import get_level_tags
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+try:
+    from django.contrib.contenttypes.fields import GenericForeignKey
+except ImportError:
+    from django.contrib.contenttypes.generic import GenericForeignKey
 
 from jsonfield import JSONField
+
+AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class OfflineMessageQuerySetManager(models.query.QuerySet):
@@ -36,15 +45,18 @@ class OfflineMessageQuerySetManager(models.query.QuerySet):
 
 class OfflineMessageManager(models.Manager):
 
-    def get_query_set(self):
+    def get_queryset(self):
         return OfflineMessageQuerySetManager(self.model)
 
     def __getattr__(self, name):
-        return getattr(self.get_query_set(), name)
+        try:
+            return getattr(self, name)
+        except AttributeError:
+            return getattr(self.get_queryset(), name)
 
 
 class OfflineMessage(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(AUTH_USER_MODEL)
     level = models.IntegerField(default=constants.INFO)
     message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -53,7 +65,7 @@ class OfflineMessage(models.Model):
 
     content_type = models.ForeignKey(ContentType, blank=True, null=True)
     object_id = models.PositiveIntegerField(blank=True, null=True)
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
 
     meta = JSONField(default={}, blank=True, null=True)
 

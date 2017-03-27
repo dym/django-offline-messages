@@ -1,4 +1,10 @@
+.idea
+
 *.pyc
 *~
+*.egg
+
+build/
 django_offline_messages.egg-info/*
 dist/*
+venv/

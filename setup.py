@@ -3,7 +3,7 @@
 A package that implements offline messages for Django
 Web Framework.
 
-(C) 2011 oDesk www.oDesk.com w/revisions by Zapier.com
+(C) 2011-2014 oDesk www.oDesk.com w/revisions by Zapier.com
 """
 
 from setuptools import setup, find_packages
@@ -33,5 +33,7 @@ setup(
                  'Programming Language :: Python',
                  'Topic :: Software Development :: Libraries :: Python Modules',
                  ],
-    test_suite='tests.runtests.runtests'
-    )
+    test_suite='tests.runtests.runtests',
+    install_requires=['django-jsonfield'],
+    zip_safe=False
+)
