@@ -12,6 +12,7 @@ except ImportError:
 from offline_messages.models import OfflineMessage
 from offline_messages.storage import OfflineStorageEngine
 from offline_messages.utils import create_offline_message
+from offline_messages.management.commands.clear_read_messages import Command
 
 
 class OfflineMessagesTests(session_tests.SessionTest):
@@ -85,3 +86,18 @@ class OfflineMessagesTests(session_tests.SessionTest):
         offline_message = OfflineMessage.objects.get()
         expected_tags = constants.DEFAULT_TAGS.get(self.test_level)
         self.assertEqual(offline_message.tags, expected_tags)
+
+
+    def test_clear_offline_mesages_task(self):
+        user = self.create_user()
+        self.create_offline_message(user, "This will be gone")
+        read_message =  OfflineMessage.objects.get(user=user)
+        read_message.read = True
+        read_message.save()
+        unread_text = "This will still be there"
+        self.create_offline_message(user, unread_text)
+        unread_message = OfflineMessage.objects.get(message=unread_text)
+        Command().handle()
+        all_messages = OfflineMessage.objects.all()
+        self.assertTrue(unread_message in all_messages)
+        self.assertTrue(read_message not in all_messages)

@@ -15,11 +15,22 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='OfflineExpiration',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=200)),
+                ('datetime', models.DateTimeField()),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='OfflineMessage',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('level', models.IntegerField(default=20)),
-                ('message', models.CharField(max_length=200)),
+                ('message', models.TextField()),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('read', models.BooleanField(default=False)),
                 ('object_id', models.PositiveIntegerField(null=True, blank=True)),

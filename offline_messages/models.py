@@ -58,7 +58,7 @@ class OfflineMessageManager(models.Manager):
 class OfflineMessage(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL)
     level = models.IntegerField(default=constants.INFO)
-    message = models.CharField(max_length=200)
+    message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
     read = models.BooleanField(default=False)
@@ -78,3 +78,8 @@ class OfflineMessage(models.Model):
     def tags(self):
         level_tags = get_level_tags()
         return force_unicode(level_tags.get(self.level, ''), strings_only=True)
+
+
+class OfflineExpiration(models.Model):
+    name = models.CharField(max_length=200)
+    datetime = models.DateTimeField()
