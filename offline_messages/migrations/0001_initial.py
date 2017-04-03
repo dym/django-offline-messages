@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import jsonfield.fields
+import django.contrib.postgres.fields as pg_fields
 from django.conf import settings
 
 
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('read', models.BooleanField(default=False)),
                 ('object_id', models.PositiveIntegerField(null=True, blank=True)),
-                ('meta', jsonfield.fields.JSONField(default={}, null=True, blank=True)),
+                ('meta', pg_fields.JSONField(default={}, null=True, blank=True)),
                 ('content_type', models.ForeignKey(blank=True, to='contenttypes.ContentType', null=True)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
