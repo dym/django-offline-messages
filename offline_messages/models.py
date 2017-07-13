@@ -15,7 +15,7 @@ try:
 except ImportError:
     from django.contrib.contenttypes.generic import GenericForeignKey
 
-from jsonfield import JSONField
+import django.contrib.postgres.fields as pg_fields
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -67,7 +67,7 @@ class OfflineMessage(models.Model):
     object_id = models.PositiveIntegerField(blank=True, null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    meta = JSONField(default={}, blank=True, null=True)
+    meta = pg_fields.JSONField(default={}, blank=True, null=True)
 
     objects = OfflineMessageManager()
 

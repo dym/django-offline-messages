@@ -31,6 +31,5 @@ setup(
                  'Topic :: Software Development :: Libraries :: Python Modules',
                  ],
     test_suite='tests.runtests.runtests',
-    install_requires=['django-jsonfield'],
     zip_safe=False
 )
