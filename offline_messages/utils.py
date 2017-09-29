@@ -47,13 +47,9 @@ def create_offline_message(user,
     if not isinstance(user, get_user_model()):
         user = get_user_model().objects.get(username=user)
 
-    level_tags = get_level_tags()
-    label_tag = force_unicode(level_tags.get(level, ''), strings_only=True)
-
     kwargs = dict(
         user=user,
         level=level,
-        tags=label_tag,
         read=read,
         message=message,
         meta=dict(meta)
