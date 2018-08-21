@@ -48,11 +48,11 @@ class OfflineMessageManager(models.Manager):
     def get_queryset(self):
         return OfflineMessageQuerySetManager(self.model)
 
-    def __getattr__(self, name):
-        try:
-            return getattr(self, name)
-        except AttributeError:
-            return getattr(self.get_queryset(), name)
+    #def __getattr__(self, name):
+    #    try:
+    #        return getattr(self, name)
+    #    except AttributeError:
+    #        return getattr(self.get_queryset(), name)
 
 
 class OfflineMessage(models.Model):
