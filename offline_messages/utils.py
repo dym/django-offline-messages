@@ -66,7 +66,7 @@ def add_message(request, level, message, extra_tags='', fail_silently=False, **k
     Attempts to add a message to the request using the 'messages' app, falling
     back to the user's message_set if MessageMiddleware hasn't been enabled.
     """
-    if hasattr(request, 'user') and request.user.is_authenticated():
+    if hasattr(request, 'user') and request.user.is_authenticated:
         # can pass in content_object and meta now
         return create_offline_message(request.user, message, level, **kwargs)
     if hasattr(request, '_messages'):
