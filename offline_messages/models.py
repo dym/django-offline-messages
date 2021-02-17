@@ -58,7 +58,7 @@ class OfflineMessageManager(models.Manager):
 class OfflineMessage(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     level = models.IntegerField(default=constants.INFO)
-    message = models.CharField(max_length=200)
+    message = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 
     read = models.BooleanField(default=False)
