@@ -10,10 +10,6 @@ except ImportError:
 
 from django.contrib.messages import constants
 from django.contrib.messages.api import MessageFailure
-try:
-    from django.utils.encoding import force_unicode
-except ImportError:
-    from django.utils.encoding import force_text as force_unicode
 from django.contrib.messages.utils import get_level_tags
 
 from offline_messages.models import OfflineMessage

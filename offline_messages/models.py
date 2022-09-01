@@ -2,10 +2,7 @@
 
 from django.db import models
 from django.conf import settings
-try:
-    from django.utils.encoding import force_unicode
-except ImportError:
-    from django.utils.encoding import force_text as force_unicode
+from django.utils.encoding import force_str
 from django.contrib.messages import constants
 from django.contrib.messages.utils import get_level_tags
 
@@ -48,7 +45,7 @@ class OfflineMessageManager(models.Manager):
     def get_queryset(self):
         return OfflineMessageQuerySetManager(self.model)
 
-    #def __getattr__(self, name):
+    # def __getattr__(self, name):
     #    try:
     #        return getattr(self, name)
     #    except AttributeError:
@@ -72,9 +69,9 @@ class OfflineMessage(models.Model):
     objects = OfflineMessageManager()
 
     def __unicode__(self):
-        return force_unicode(self.message)
+        return force_str(self.message)
 
     @property
     def tags(self):
         level_tags = get_level_tags()
-        return force_unicode(level_tags.get(self.level, ''), strings_only=True)
+        return force_str(level_tags.get(self.level, ''), strings_only=True)
