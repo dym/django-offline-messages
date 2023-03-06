@@ -10,10 +10,6 @@ except ImportError:
 
 from django.contrib.messages import constants
 from django.contrib.messages.api import MessageFailure
-try:
-    from django.utils.encoding import force_unicode
-except ImportError:
-    from django.utils.encoding import force_text as force_unicode
 from django.contrib.messages.utils import get_level_tags
 
 from offline_messages.models import OfflineMessage
@@ -47,13 +43,9 @@ def create_offline_message(user,
     if not isinstance(user, get_user_model()):
         user = get_user_model().objects.get(username=user)
 
-    level_tags = get_level_tags()
-    label_tag = force_unicode(level_tags.get(level, ''), strings_only=True)
-
     kwargs = dict(
         user=user,
         level=level,
-        tags=label_tag,
         read=read,
         message=message,
         meta=dict(meta)
@@ -70,7 +62,7 @@ def add_message(request, level, message, extra_tags='', fail_silently=False, **k
     Attempts to add a message to the request using the 'messages' app, falling
     back to the user's message_set if MessageMiddleware hasn't been enabled.
     """
-    if hasattr(request, 'user') and request.user.is_authenticated():
+    if hasattr(request, 'user') and request.user.is_authenticated:
         # can pass in content_object and meta now
         return create_offline_message(request.user, message, level, **kwargs)
     if hasattr(request, '_messages'):

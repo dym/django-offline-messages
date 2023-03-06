@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
                 ('read', models.BooleanField(default=False)),
                 ('object_id', models.PositiveIntegerField(null=True, blank=True)),
                 ('meta', jsonfield.fields.JSONField(default={}, null=True, blank=True)),
-                ('content_type', models.ForeignKey(blank=True, to='contenttypes.ContentType', null=True)),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('content_type', models.ForeignKey(blank=True, to='contenttypes.ContentType', null=True, on_delete=models.SET_NULL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },
